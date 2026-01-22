@@ -1,5 +1,5 @@
 package com.helpdesk.enums;
 
 public enum Priority {
-    LOW, MEDIUM, HIGH,URGENT
+    LOW, MEDIUM, HIGH, URGENT
 }
