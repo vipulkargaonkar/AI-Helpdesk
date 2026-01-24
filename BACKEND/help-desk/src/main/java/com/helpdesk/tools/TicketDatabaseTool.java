@@ -43,6 +43,21 @@ public class TicketDatabaseTool {
         return ticketService.updateTicket(ticket);
     }
 
+    @Tool(description = "Update ticket status")
+    public Ticket updateTicketStatus(
+            @ToolParam(description = "Ticket ID to update") String emailId,
+            @ToolParam(description = "New status (OPEN, IN_PROGRESS, RESOLVED, CLOSED)") String status
+    ) {
+        Ticket ticket = ticketService.getTicketByEmailId(emailId);
+
+        if (ticket == null) {
+            throw new IllegalArgumentException("Ticket not found");
+        }
+
+        ticket.setStatus(Status.valueOf(status.toUpperCase()));
+        return ticketService.updateTicket(ticket);
+    }
+
     @Tool(description = "This tool helps to get current system time.")
     public String getCurrentTime() {
         return String.valueOf(System.currentTimeMillis());
